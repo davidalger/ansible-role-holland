@@ -12,4 +12,9 @@
 - name: Install Holland mysqldump configuration
   template:
     dest: /etc/holland/providers/mysqldump.conf
-    src: mysqldump.conf.j2
+    src: providers/mysqldump.conf.j2
+
+- name: Install Holland default backupset configuration
+  template:
+    dest: /etc/holland/backupsets/default.conf
+    src: backupsets/default.conf.j2

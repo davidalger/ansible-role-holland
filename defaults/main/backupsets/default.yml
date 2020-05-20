@@ -1,0 +1,40 @@
+---
+## Default Backup-Set
+##
+## Backs up all MySQL databases in a one-file-per-database fashion using
+## lightweight in-line compression and engine auto-detection. This backup-set
+## is designed to provide reliable backups "out of the box", however it is
+## generally advisable to create additional custom backup-sets to suit
+## one's specific needs.
+##
+## For more inforamtion about backup-sets, please consult the online Holland
+## documentation. Fully-commented example backup-sets are also provided, by
+## default, in /etc/holland/backupsets/examples.
+
+# [holland:backup]
+holland_backupsets_default_plugin: mysqldump
+holland_backupsets_default_backups_to_keep: "7"
+holland_backupsets_default_auto_purge_failures: "yes"
+holland_backupsets_default_purge_policy: after-backup
+holland_backupsets_default_estimated_size_factor: "0.5"
+
+# This section defines the configuration options specific to the backup
+# plugin. In other words, the name of this section should match the name
+# of the plugin defined above.
+# [mysqldump]
+holland_backupsets_default_mysqldump_file_per_database: "yes"
+holland_backupsets_default_mysqldump_lock_method: auto-detect
+holland_backupsets_default_mysqldump_databases: "*"
+holland_backupsets_default_mysqldump_exclude_databases:
+holland_backupsets_default_mysqldump_tables: "*"
+holland_backupsets_default_mysqldump_exclude_tables:
+holland_backupsets_default_mysqldump_stop_slave: "{{ holland_mysqldump_stop_slave }}"
+holland_backupsets_default_mysqldump_bin_log_position: "{{ holland_mysqldump_bin_log_position }}"
+
+# [compression]
+holland_backupsets_default_compression_method: "{{ holland_mysqldump_compression_method }}"
+holland_backupsets_default_compression_inline: "{{ holland_mysqldump_compression_inline }}"
+holland_backupsets_default_compression_level: "{{ holland_mysqldump_compression_level }}"
+
+# [mysql:client]
+holland_backupsets_default_client_defaults_extra_file: "{{ holland_mysqldump_client_defaults_extra_file }}"

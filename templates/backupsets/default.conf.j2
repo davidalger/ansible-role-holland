@@ -1,0 +1,44 @@
+# {{ ansible_managed }}
+
+## Default Backup-Set
+##
+## Backs up all MySQL databases in a one-file-per-database fashion using
+## lightweight in-line compression and engine auto-detection. This backup-set
+## is designed to provide reliable backups "out of the box", however it is 
+## generally advisable to create additional custom backup-sets to suit
+## one's specific needs.
+##
+## For more inforamtion about backup-sets, please consult the online Holland
+## documentation. Fully-commented example backup-sets are also provided, by
+## default, in /etc/holland/backupsets/examples.
+
+[holland:backup]
+plugin = {{ holland_backupsets_default_plugin }}
+backups-to-keep = {{ holland_backupsets_default_backups_to_keep }}
+auto-purge-failures = {{ holland_backupsets_default_auto_purge_failures }}
+purge-policy = {{ holland_backupsets_default_purge_policy }}
+estimated-size-factor = {{ holland_backupsets_default_estimated_size_factor }}
+
+# This section defines the configuration options specific to the backup
+# plugin. In other words, the name of this section should match the name
+# of the plugin defined above.
+[mysqldump]
+file-per-database  = {{ holland_backupsets_default_mysqldump_file_per_database }}
+lock-method        = {{ holland_backupsets_default_mysqldump_lock_method }}
+databases          = {{ holland_backupsets_default_mysqldump_databases }}
+exclude-databases  = {{ holland_backupsets_default_mysqldump_exclude_databases }}
+tables             = {{ holland_backupsets_default_mysqldump_tables }}
+exclude-tables     = {{ holland_backupsets_default_mysqldump_exclude_tables }}
+stop-slave         = {{ holland_backupsets_default_mysqldump_stop_slave }}
+bin-log-position   = {{ holland_backupsets_default_mysqldump_bin_log_position }}
+
+# The following section is for compression. The default, unless the
+# mysqldump provider has been modified, is to use inline fast gzip
+# compression (which is identical to the commented section below).
+[compression]
+method             = {{ holland_backupsets_default_compression_method }}
+inline             = {{ holland_backupsets_default_compression_inline }}
+level              = {{ holland_backupsets_default_compression_level }}
+
+[mysql:client]
+defaults-extra-file = {{ holland_backupsets_default_client_defaults_extra_file }}
