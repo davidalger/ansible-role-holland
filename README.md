@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/davidalger/ansible-role-holland.svg?branch=master)](https://travis-ci.org/davidalger/ansible-role-holland)
 
-Installs the Holland Backup Manager for RHEL/CentOS and Fedora.
+Installs the Holland Backup Manager for RHEL/CentOS and Fedora with a default 7-day backupset configuration executed via a nightly cron job.
 
 ## Requirements
 
@@ -20,25 +20,12 @@ See defaults files under `defaults/main/` for descriptions and list of available
 
     - hosts: database
       roles:
-        - davidalger.holland
-      vars:
-        holland_mysqldump_file_per_database: "yes"
-        holland_mysqldump_compression_level: "3"
-      tasks:
-        - name: Configure Holland default backup set
-          copy:
-            dest: /etc/holland/backupsets/default.conf
-            content: |
-              [holland:backup]
-              plugin = mysqldump
-              backups-to-keep = 28
-              purge-policy = after-backup
-            mode: 0640
+        - { role: davidalger.holland, tags: holland }
 
 ## License
 
-MIT
+This work is licensed under the MIT license. See LICENSE file for details.
 
 ## Author Information
 
-This role was created in 2017 by [Ryan Chouinard](https://www.ryanchouinard.com/).
+This role was created in 2017 by [Ryan Chouinard](https://www.ryanchouinard.com/) and extended by [David Alger](http://davidalger.com/).
