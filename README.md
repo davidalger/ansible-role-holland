@@ -1,10 +1,12 @@
 # Ansible Role: Holland Backup Manager
 
+[![Build Status](https://travis-ci.org/davidalger/ansible-role-holland.svg?branch=master)](https://travis-ci.org/davidalger/ansible-role-holland)
+
 Installs the Holland Backup Manager for RHEL/CentOS and Fedora.
 
 ## Requirements
 
-On EL platforms, the EPEL respository is required.
+On EL platforms, the EPEL respository is required and will be installed via the `geerlingguy.repo-epel` role.
 
 ## Role Variables
 
@@ -49,7 +51,7 @@ None.
 
     - hosts: database
       roles:
-        - rchouinard.holland-backup
+        - davidalger.holland
       vars:
         holland_mysqldump_file_per_database: "yes"
         holland_mysqldump_compression_level: "3"
