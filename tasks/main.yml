@@ -18,3 +18,16 @@
   template:
     dest: /etc/holland/backupsets/default.conf
     src: backupsets/default.conf.j2
+
+- name: Install Holland cron job
+  cron:
+    cron_file: holland
+    name: holland
+    minute: "{{ holland_cron_minute }}"
+    hour: "{{ holland_cron_hour }}"
+    day: "{{ holland_cron_day }}"
+    month: "{{ holland_cron_month }}"
+    weekday: "{{ holland_cron_weekday }}"
+    user: "{{ holland_cron_user }}"
+    job: "{{ holland_cron_job }}"
+    disabled: "{{ holland_cron_disabled }}"
