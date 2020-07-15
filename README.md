@@ -1,6 +1,6 @@
 # Ansible Role: Holland Backup Manager
 
-[![Build Status](https://travis-ci.org/davidalger/ansible-role-holland.svg?branch=master)](https://travis-ci.org/davidalger/ansible-role-holland)
+[![Build Status](https://travis-ci.com/davidalger/ansible-role-holland.svg?branch=master)](https://travis-ci.com/davidalger/ansible-role-holland)
 
 Installs the Holland Backup Manager for RHEL/CentOS and Fedora with a default 7-day backupset configuration executed via a nightly cron job.
 
